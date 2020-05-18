@@ -8,7 +8,7 @@ class UserProfileManager (BaseUserManager):
     """manager for user profiles"""
     def crate_user(self,email,name,password=None):
         """create a user profile"""
-        if not emai :
+        if not email :
             raise ValueError('User Must Have Value')
         email = self.normalize_email(email)
         user = self.model(email=email,name=name)
@@ -16,7 +16,7 @@ class UserProfileManager (BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_super_user(self,email,name,password):
+    def create_superuser(self,email,name,password):
         """create and save new super user(admin) with detailed info"""
         user = self.crate_user(email,name,password)
         user.is_superuser= True
