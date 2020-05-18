@@ -32,3 +32,26 @@ class HelloApiView(APIView):
             # error http 400 bad request
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
+
+    def put(self,request,pk=None):
+        """handle updating object"""
+        #pk is used for id for the object that you want to be update
+        # put is update a row
+        serializer = self.serializer_class(data=request.data)
+        name = 'shayan'
+        if serializer.is_valid():
+            name = serializer.validated_data.get('name')
+            return Response({'message':name})
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self,request,pk=None):
+        """update partial of and object"""
+        # patch is update a field
+        return Response({'message':'PATCH'})
+
+    def delete(self,request,pk=None):
+        """delete a object"""
+        return Response({'message':'delete'})
+
+
